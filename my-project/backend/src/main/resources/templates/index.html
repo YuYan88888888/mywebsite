@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<h1>Registered Users</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Registration Time</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${#dates.format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+</table>
+
+<h2>Register New User</h2>
+<form method="post" action="/register">
+    <input type="text" name="username" placeholder="Username" required>
+
+    <input type="email" name="email" placeholder="Email" required>
+
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
